@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <header class="h-[64px] flex bg-[#292E35] shadow-lg items-center">
+  <header class="flex bg-[#292E35] shadow-lg items-center">
     <div class="border-r-[1px] border-gray-600 p-4">
       <h1 class="text-3xl">4ESLOLPROS.GG</h1>
     </div>
