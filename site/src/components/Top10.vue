@@ -7,10 +7,22 @@
       <p class="">Complete ladder</p>
     </div>
     <div class="bg-[#292E35] p-2 px-5">
-      <div v-for="i in 10" :key="i" class="border-b-2 border-gray-900">
+      <div
+        v-for="i in 10"
+        :key="i"
+        class="border-b-2 border-gray-900 flex flex-nowrap justify-between px-3 my-2"
+      >
         <div class="flex items-center py-4">
-            <img class="w-[40px] mr-5" src="https://flagcdn.com/fr.svg" alt="" />
+          <img class="w-[40px] mr-5" src="https://flagcdn.com/fr.svg" alt="" />
           <h3 class="font-bold">Mateleo</h3>
+        </div>
+        <div class="flex justify-between max-w-[300px] grow items-center">
+          <img class="w-[32px] h-[32px]" src="../assets/positions/adc.svg" alt="" />
+          <div class="flex flex-col justify-center">
+            <img class="h-[32px] m-auto" src="../assets/emblems/Emblem_Challenger.png" alt="" />
+            <p class="text-sm text-center">867 LP</p>
+          </div>
+          <p class="font-bold text-xl text-center">-</p>
         </div>
       </div>
     </div>
