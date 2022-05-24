@@ -14,7 +14,7 @@
       >
         <div class="flex items-center py-4">
           <img class="w-[40px] mr-5" src="https://flagcdn.com/fr.svg" alt="" />
-          <h3 class="font-bold">Mateleo</h3>
+          <router-link to="/player" class="font-bold hover:text-cyan-400 transition-colors ease-in-out">Mateleo</router-link>
         </div>
         <div class="flex justify-between max-w-[300px] grow items-center">
           <img class="w-[32px] h-[32px]" src="../assets/positions/adc.svg" alt="" />
