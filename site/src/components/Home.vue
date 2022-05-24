@@ -1,7 +1,12 @@
 <script setup lang="ts">
+import Header from "./Header.vue";
+import Top10 from "./Top10.vue";
 
 </script>
 
 <template>
-  <h1>Home</h1>
+<Header></Header>
+<main class="mt-9">
+  <Top10></Top10>
+</main>
 </template>
