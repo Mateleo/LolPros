@@ -13,4 +13,7 @@ body{
   margin:0;
   color:white;
 }
+:root {
+    color-scheme: dark;
+}
 </style>

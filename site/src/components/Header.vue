@@ -12,9 +12,9 @@
       />
     </div>
     <nav class="flex justify-between px-4 h-full">
-      <router-link to="" class="ml-4 h-full border-b-[6px] hover:border-cyan-300 border-transparent flex items-center transition-colors ease-in">LADDERS</router-link>
-      <router-link to="" class="ml-4 h-full border-b-[6px] hover:border-cyan-300 border-transparent flex items-center transition-colors ease-in">LADDERS</router-link>
-      <router-link to="" class="ml-4 h-full border-b-[6px] hover:border-cyan-300 border-transparent flex items-center transition-colors ease-in">LADDERS</router-link>
+      <router-link to="" class="ml-4 h-full border-b-[6px] hover:border-cyan-300 border-transparent flex items-center transition-colors ease-in grow">LADDERS</router-link>
+      <router-link to="" class="ml-4 h-full border-b-[6px] hover:border-cyan-300 border-transparent flex items-center transition-colors ease-in grow">LADDERS</router-link>
+      <router-link to="" class="ml-4 h-full border-b-[6px] hover:border-cyan-300 border-transparent flex items-center transition-colors ease-in grow">LADDERS</router-link>
     </nav>
   </header>
 </template>
