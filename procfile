@@ -1,1 +1,0 @@
-web: cd backend && cd lolpros && gunicorn lolpros.wsgi
