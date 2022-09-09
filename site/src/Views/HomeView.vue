@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Header from "./Header.vue";
-import Top10 from "./Top10.vue";
+import Header from "../components/Header.vue";
+import Top10 from "../components/Top10.vue";
 
 </script>
 
