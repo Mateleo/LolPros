@@ -133,7 +133,7 @@ function EmblemImage() {
             <div class="bg-[#22262B] flex justify-between px-2 mt-2">
               <img
                 class="object-cover w-[120px] h-[80px]"
-                src="../assets/emblems/Emblem_Challenger.png"
+                src=""
                 alt=""
               />
               <div class="flex flex-col text-right text-xs p-4 leading-3">
