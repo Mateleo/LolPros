@@ -19,7 +19,7 @@
         <div class="flex justify-between max-w-[300px] grow items-center">
           <img class="w-[32px] h-[32px]" src="../assets/positions/adc.svg" alt="" />
           <div class="flex flex-col justify-center">
-            <img class="h-[32px] m-auto" src="../assets/emblems/Emblem_Challenger.png" alt="" />
+            <img class="h-[32px] m-auto" src="../../public/emblems/Emblem_Challenger.png" alt="" />
             <p class="text-sm text-center">867 LP</p>
           </div>
           <p class="font-bold text-xl text-center">-</p>
