@@ -44,6 +44,10 @@ export const useStore = defineStore("main", {
           console.log(this.User)
         })
         .catch((err) => console.log(err));
+        console.log("User fetched !")
     },
+    ToLowerWithoutFirst(s:string | undefined):string{
+      return s ? s[0]+s.slice(1).toLocaleLowerCase() : ""
+    }
   },
 });

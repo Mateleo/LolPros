@@ -1,5 +1,5 @@
 import { useStore } from "@/stores/store";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory, type RouteLocationNormalized } from "vue-router";
 import HomeView from "../Views/HomeView.vue";
 import PlayereView from "../Views/PlayerView.vue";
 
@@ -13,6 +13,17 @@ const routes = [
     path: "/player/:playerid",
     name: "Player",
     component: PlayereView,
+    beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+      let store = useStore();
+      if (!store.getUserName) {
+        if (typeof to.params.playerid == "string") {
+          await store.fetchProfile(to.params.playerid);
+        } else {
+          await store.fetchProfile(to.params.playerid[0]);
+        }
+      }
+      return true;
+    },
   },
 ];
 const router = createRouter({
@@ -20,11 +31,15 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from) => {
-  if (to.name == "Player") {
-    const store = useStore();
-    store.fetchProfile(to.params.playerid[0]);
-  }
-});
+// router.beforeEach((to, from) => {
+//   if (to.name == "Player") {
+//     const store = useStore();
+//     if (typeof to.params.playerid == "string") {
+//       store.fetchProfile(to.params.playerid);
+//     } else {
+//       store.fetchProfile(to.params.playerid[0]);
+//     }
+//   }
+// });
 
 export default router;

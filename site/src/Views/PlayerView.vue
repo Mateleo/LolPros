@@ -1,6 +1,18 @@
 <script setup lang="ts">
+import { useStore } from "@/stores/store";
+import { ref } from "vue";
 import Header from "../components/Header.vue";
 import Top10 from "../components/Top10.vue";
+
+const store = useStore();
+
+function EmblemImage() {
+  return store.ToLowerWithoutFirst(store.getAllAcounts[0].tier)
+    ? "../../emblems/Emblem_" +
+        store.ToLowerWithoutFirst(store.getAllAcounts[0].tier) +
+        ".png"
+    : "../../emblems/Emblem_Iron.png";
+}
 </script>
 
 <template>
@@ -12,10 +24,10 @@ import Top10 from "../components/Top10.vue";
       >
         <img
           class="w-[112px] h-[112px] m-auto rounded-full shadow-md shadow-black"
-          src="../assets/pp.png"
+          :src="store.getAllAcounts[0].profileIcon"
           alt=""
         />
-        <h2 class="text-xl text-center">Mateleo</h2>
+        <h2 class="text-xl text-center">{{ store.getUserName }}</h2>
         <div class="m-auto">social networks</div>
         <div></div>
         <div class="p-2 bg-[#292E35] flex">
@@ -100,15 +112,13 @@ import Top10 from "../components/Top10.vue";
               <button class="bg-sky-400 px-2 py-1 text-xs">OP.GG</button>
             </div>
             <div class="bg-[#22262B] flex justify-between px-2 mt-2">
-              <img
-                class="object-cover w-[120px] h-[80px]"
-                src="../assets/emblems/Emblem_Challenger.png"
-                alt=""
-              />
+              <img class="object-cover w-[120px] h-[80px]" :src="EmblemImage()" alt="" />
               <div class="flex flex-col text-right text-xs p-4 leading-3">
-                <p>Challenger</p>
-                <p>1864LP</p>
-                <p>642/519 (55%)</p>
+                <p>{{ store.ToLowerWithoutFirst(store.getAllAcounts[0].tier) }}</p>
+                <p>{{ store.getAllAcounts[0].LPC }}</p>
+                <p>
+                  {{ store.getAllAcounts[0].wins }}/{{ store.getAllAcounts[0].losses }} ()
+                </p>
                 <p>25/05</p>
               </div>
             </div>
