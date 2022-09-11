@@ -6,10 +6,12 @@ import Top10 from "../components/Top10.vue";
 
 const store = useStore();
 
+let accountIndex = ref(0)
+
 function EmblemImage() {
-  return store.ToLowerWithoutFirst(store.getAllAcounts[0].tier)
+  return store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex.value].tier)
     ? "../../emblems/Emblem_" +
-        store.ToLowerWithoutFirst(store.getAllAcounts[0].tier) +
+        store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex.value].tier) +
         ".png"
     : "../../emblems/Emblem_Iron.png";
 }
@@ -24,7 +26,7 @@ function EmblemImage() {
       >
         <img
           class="w-[112px] h-[112px] m-auto rounded-full shadow-md shadow-black"
-          :src="store.getAllAcounts[0].profileIcon"
+          :src="store.getAllAcounts[accountIndex].profileIcon"
           alt=""
         />
         <h2 class="text-xl text-center">{{ store.getUserName }}</h2>
@@ -91,15 +93,16 @@ function EmblemImage() {
       </nav>
       <div class="flex flex-wrap">
         <div
-          v-for="i in 6"
+          v-for="account,index in store.getAllAcounts"
           class="bg-[#22262B] border-[1px] border-transparent flex px-4 py-2 rounded-sm mr-5 mt-2"
+          @click="accountIndex = index"
         >
           <img
             class="w-[24px] h-[24px] m-auto rounded-full mr-2"
-            src="../assets/pp.png"
+            :src="account.profileIcon"
             alt=""
           />
-          <p class="text-sm text-cyan-300">Mateleo</p>
+          <p class="text-sm text-cyan-300">{{account.name}}</p>
         </div>
       </div>
       <div class="flex mt-5">
@@ -114,10 +117,10 @@ function EmblemImage() {
             <div class="bg-[#22262B] flex justify-between px-2 mt-2">
               <img class="object-cover w-[120px] h-[80px]" :src="EmblemImage()" alt="" />
               <div class="flex flex-col text-right text-xs p-4 leading-3">
-                <p>{{ store.ToLowerWithoutFirst(store.getAllAcounts[0].tier) }}</p>
-                <p>{{ store.getAllAcounts[0].LPC }}</p>
+                <p>{{ store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex].tier) }}</p>
+                <p>{{ store.getAllAcounts[accountIndex].LPC }}</p>
                 <p>
-                  {{ store.getAllAcounts[0].wins }}/{{ store.getAllAcounts[0].losses }} ()
+                  {{ store.getAllAcounts[accountIndex].wins }}/{{ store.getAllAcounts[accountIndex].losses }} ()
                 </p>
                 <p>25/05</p>
               </div>
