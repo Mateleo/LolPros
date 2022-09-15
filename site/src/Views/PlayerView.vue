@@ -6,7 +6,7 @@ import Top10 from "../components/Top10.vue";
 
 const store = useStore();
 
-let accountIndex = ref(0)
+let accountIndex = ref(0);
 
 function EmblemImage() {
   return store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex.value].tier)
@@ -93,7 +93,7 @@ function EmblemImage() {
       </nav>
       <div class="flex flex-wrap">
         <div
-          v-for="account,index in store.getAllAcounts"
+          v-for="(account, index) in store.getAllAcounts"
           class="bg-[#22262B] border-[1px] border-transparent flex px-4 py-2 rounded-sm mr-5 mt-2"
           @click="accountIndex = index"
         >
@@ -102,7 +102,7 @@ function EmblemImage() {
             :src="account.profileIcon"
             alt=""
           />
-          <p class="text-sm text-cyan-300">{{account.name}}</p>
+          <p class="text-sm text-cyan-300">{{ account.name }}</p>
         </div>
       </div>
       <div class="flex mt-5">
@@ -112,33 +112,34 @@ function EmblemImage() {
               class="flex justify-between border-l-[3px] border-cyan-300 border-transparent"
             >
               <h2 class="ml-2">Current Elo</h2>
-              <button class="bg-sky-400 px-2 py-1 text-xs">OP.GG</button>
+              <a
+                class="bg-sky-400 px-2 py-1 text-xs"
+                :href="'https://euw.op.gg/summoners/euw/'+store.getAllAcounts[accountIndex].name"
+                target="_blank"
+                >OP.GG</a
+              >
             </div>
             <div class="bg-[#22262B] flex justify-between px-2 mt-2">
               <img class="object-cover w-[120px] h-[80px]" :src="EmblemImage()" alt="" />
               <div class="flex flex-col text-right text-xs p-4 leading-3">
-                <p>{{ store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex].tier) }}</p>
+                <p>
+                  {{ store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex].tier) }}
+                </p>
                 <p>{{ store.getAllAcounts[accountIndex].LPC }}</p>
                 <p>
-                  {{ store.getAllAcounts[accountIndex].wins }}/{{ store.getAllAcounts[accountIndex].losses }} ()
+                  {{ store.getAllAcounts[accountIndex].wins }}/{{
+                    store.getAllAcounts[accountIndex].losses
+                  }}
+                  ()
                 </p>
                 <p>25/05</p>
               </div>
             </div>
           </div>
           <div class="flex flex-col mt-5">
-            <div
-              class="flex justify-between border-l-[3px] border-cyan-300 border-transparent"
-            >
-              <h2 class="ml-2">Peak Elo</h2>
-              <button class="bg-sky-400 px-2 py-1 text-xs">OP.GG</button>
-            </div>
+
             <div class="bg-[#22262B] flex justify-between px-2 mt-2">
-              <img
-                class="object-cover w-[120px] h-[80px]"
-                src=""
-                alt=""
-              />
+              <img class="object-cover w-[120px] h-[80px]" src="" alt="" />
               <div class="flex flex-col text-right text-xs p-4 leading-3">
                 <p>Challenger</p>
                 <p>1864LP</p>
