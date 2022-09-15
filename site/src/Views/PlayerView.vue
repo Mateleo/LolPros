@@ -19,8 +19,8 @@ function EmblemImage() {
 
 <template>
   <Header></Header>
-  <main class="flex w-[90%] m-auto mt-6">
-    <div class="flex flex-col">
+  <main class="flex md:w-full mt-6 justify-center flex-col md:flex-row w-[95%] m-auto">
+    <div class="flex md:flex-col sm:flex-row justify-between flex-col m-auto sm:m-0">
       <div
         class="aspect-square w-[300px] flex flex-col bg-[#22262B] p-6 shadow-lg shadow-black/10"
       >
@@ -42,7 +42,7 @@ function EmblemImage() {
         </div>
       </div>
       <div
-        class="w-[300px] flex flex-col bg-[#22262B] p-6 mt-8 shadow-lg shadow-black/10"
+        class="w-[300px] flex flex-col bg-[#22262B] p-6 md:mt-8 shadow-lg shadow-black/10"
       >
         <div class="flex justify-between p-2">
           <div class="flex">
@@ -68,7 +68,7 @@ function EmblemImage() {
         </div>
       </div>
     </div>
-    <div class="flex flex-col ml-5">
+    <div class="flex flex-col md:ml-5">
       <nav class="flex">
         <button
           class="p-3 px-4 border-b-[5px] hover:border-cyan-300 border-transparent flex items-center transition-colors ease-in"
@@ -105,8 +105,8 @@ function EmblemImage() {
           <p class="text-sm text-cyan-300">{{ account.name }}</p>
         </div>
       </div>
-      <div class="flex mt-5">
-        <div class="flex flex-col mr-4">
+      <div class="flex mt-5 flex-col md:flex-row">
+        <div class="flex flex-col md:mr-4">
           <div class="flex flex-col">
             <div
               class="flex justify-between border-l-[3px] border-cyan-300 border-transparent"
@@ -149,7 +149,7 @@ function EmblemImage() {
             </div>
           </div>
         </div>
-        <div class="flex flex-col grow">
+        <div class="flex flex-col grow mt-5 md:mt-0">
           <div
             class="flex justify-between border-l-[3px] border-cyan-300 border-transparent"
           >
