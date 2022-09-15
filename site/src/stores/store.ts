@@ -11,6 +11,9 @@ interface account {
   wins: number;
   losses: number;
   LPC: number;
+  LP:number;
+  teamLogo?:string;
+  team?:string
 }
 
 interface user {
@@ -23,6 +26,7 @@ interface user {
 export const useStore = defineStore("main", {
   state: () => ({
     User: {} as user,
+    Leaderboard: [] as account[]
   }),
   getters: {
     getUserName(state) {
@@ -45,6 +49,16 @@ export const useStore = defineStore("main", {
         })
         .catch((err) => console.log(err));
         console.log("User fetched !")
+    },
+    async fetchLeaderboard() {
+      await axios
+        .get("https://api.4esport.fr/lolpros/leaderboard")
+        .then((res) => {
+          this.Leaderboard = res.data.response;
+          console.log(this.Leaderboard)
+        })
+        .catch((err) => console.log(err));
+        console.log("Leaderboard fetched !")
     },
     ToLowerWithoutFirst(s:string | undefined):string{
       return s ? s[0]+s.slice(1).toLocaleLowerCase() : ""

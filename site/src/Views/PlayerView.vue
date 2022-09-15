@@ -15,6 +15,13 @@ function EmblemImage() {
         ".png"
     : "../../emblems/Emblem_Iron.png";
 }
+
+function winrate(win:number, losses:number){
+  let winrate = win/(win+losses)*100
+  return winrate.toFixed(1)+"%"
+  
+}
+
 </script>
 
 <template>
@@ -92,10 +99,11 @@ function EmblemImage() {
         </button>
       </nav>
       <div class="flex flex-wrap">
-        <div
+        <button
           v-for="(account, index) in store.getAllAcounts"
-          class="bg-[#22262B] border-[1px] border-transparent flex px-4 py-2 rounded-sm mr-5 mt-2"
+          class="bg-[#22262B] border-[1px] border-transparent flex px-4 py-2 rounded-sm mr-5 mt-2 hover:bg-black/10 hover:border-white/10"
           @click="accountIndex = index"
+          :class="accountIndex==index ? ['border-white/10'] : ''"
         >
           <img
             class="w-[24px] h-[24px] m-auto rounded-full mr-2"
@@ -103,7 +111,7 @@ function EmblemImage() {
             alt=""
           />
           <p class="text-sm text-cyan-300">{{ account.name }}</p>
-        </div>
+        </button>
       </div>
       <div class="flex mt-5 flex-col md:flex-row">
         <div class="flex flex-col md:mr-4">
@@ -125,12 +133,12 @@ function EmblemImage() {
                 <p>
                   {{ store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex].tier) }}
                 </p>
-                <p>{{ store.getAllAcounts[accountIndex].LPC }}</p>
+                <p>{{ store.getAllAcounts[accountIndex].LP }}</p>
                 <p>
                   {{ store.getAllAcounts[accountIndex].wins }}/{{
                     store.getAllAcounts[accountIndex].losses
                   }}
-                  ()
+                  ({{winrate(store.getAllAcounts[accountIndex].wins,store.getAllAcounts[accountIndex].losses)}})
                 </p>
                 <p>25/05</p>
               </div>

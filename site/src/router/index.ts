@@ -8,6 +8,13 @@ const routes = [
     path: "/",
     name: "Home",
     component: HomeView,
+    beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+      let store = useStore();
+      if (store.Leaderboard.length == 0) {
+        await store.fetchLeaderboard();
+      }
+      return true;
+    },
   },
   {
     path: "/player/:playerid",
@@ -15,12 +22,10 @@ const routes = [
     component: PlayereView,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
       let store = useStore();
-      if (!store.getUserName) {
-        if (typeof to.params.playerid == "string") {
-          await store.fetchProfile(to.params.playerid);
-        } else {
-          await store.fetchProfile(to.params.playerid[0]);
-        }
+      if (typeof to.params.playerid == "string") {
+        await store.fetchProfile(to.params.playerid);
+      } else {
+        await store.fetchProfile(to.params.playerid[0]);
       }
       return true;
     },

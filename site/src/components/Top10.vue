@@ -1,28 +1,53 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">import { useStore } from '@/stores/store';
+
+
+const store = useStore()
+
+function EmblemImage(tier:string) {
+  return store.ToLowerWithoutFirst(tier)
+    ? "../../emblems/Emblem_" +
+        store.ToLowerWithoutFirst(tier) +
+        ".png"
+    : "../../emblems/Emblem_Iron.png";
+}
+
+function mockup(img:any){
+  if(!img){
+    return "../../logo.png"
+  }
+  return img
+}
+
+function route(account:string){
+  return "/player/"+account
+}
+
+</script>
 
 <template>
-  <main class="bg-[#22262B] p-3 px-5 flex flex-col w-[60%] m-auto">
+  <main class="bg-[#22262B] p-3 md:px-5 px-2 flex flex-col w-[95%] m-auto">
     <div class="flex justify-between">
       <h2 class="text-cyan-500 text-xl font-bold">Top 10</h2>
       <p class="">Complete ladder</p>
     </div>
     <div class="bg-[#292E35] p-2 px-5">
       <div
-        v-for="i in 10"
-        :key="i"
+        v-for="user in store.Leaderboard"
         class="border-b-2 border-gray-900 flex flex-nowrap justify-between px-3 my-2"
       >
         <div class="flex items-center py-4">
-          <img class="w-[40px] mr-5" src="https://flagcdn.com/fr.svg" alt="" />
-          <router-link to="/player" class="font-bold hover:text-cyan-400 transition-colors ease-in-out">Mateleo</router-link>
+          <img class="w-[40px] mr-5 hidden sm:block" src="https://flagcdn.com/fr.svg" alt="" />
+          <router-link :to="route(user.name)" class="font-bold hover:text-cyan-400 transition-colors ease-in-out w-[120px]">{{user.name}}</router-link>
         </div>
-        <div class="flex justify-between max-w-[300px] grow items-center">
-          <img class="w-[32px] h-[32px]" src="../assets/positions/adc.svg" alt="" />
+        <div class="flex sm:justify-between justify-end max-w-[300px] grow items-center">
+          <img class="w-[32px] h-[32px] hidden sm:block" src="../assets/positions/adc.svg" alt="" />
           <div class="flex flex-col justify-center">
-            <img class="h-[32px] m-auto" src="../../public/emblems/Emblem_Challenger.png" alt="" />
-            <p class="text-sm text-center">867 LP</p>
+            <img class="object-cover w-[90px] h-[50px] m-auto" :src="EmblemImage(user.tier)" alt="" />
+            <p class="text-md font-semibold text-center leading-none">{{user.LP}}</p>
           </div>
-          <p class="font-bold text-xl text-center">-</p>
+          <div>
+            <img :src="mockup(user.teamLogo)" alt="" class="h-[32px] hidden sm:block">
+          </div>
         </div>
       </div>
     </div>
