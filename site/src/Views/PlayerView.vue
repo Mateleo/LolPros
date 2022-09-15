@@ -16,6 +16,12 @@ function EmblemImage() {
     : "../../emblems/Emblem_Iron.png";
 }
 
+function PositionImage(role: string) {
+  return store.ToLowerWithoutFirst(role)
+    ? "../../positions/" + store.ToLowerWithoutFirst(role) + ".svg"
+    : "../../positions/adc.svg";
+}
+
 function winrate(win:number, losses:number){
   let winrate = win/(win+losses)*100
   return winrate.toFixed(1)+"%"
@@ -40,8 +46,8 @@ function winrate(win:number, losses:number){
         <div class="m-auto">social networks</div>
         <div></div>
         <div class="p-2 bg-[#292E35] flex">
-          <img class="w-[24px] h-[24px] mr-3" src="../assets/positions/adc.svg" alt="" />
-          <h3>ADC</h3>
+          <img class="w-[24px] h-[24px] mr-3" :src="PositionImage(store.User.role)" alt="" />
+          <h3>{{store.User.role.toLocaleUpperCase()}}</h3>
         </div>
         <div class="p-2 bg-[#292E35] flex mt-2">
           <img class="w-[24px] h-[24px] mr-3" src="../assets/positions/adc.svg" alt="" />
@@ -55,7 +61,7 @@ function winrate(win:number, losses:number){
           <div class="flex">
             <img
               class="w-[24px] h-[24px] mr-2"
-              src="../assets/positions/adc.svg"
+              src="../../positions/adc.svg"
               alt=""
             />
             <p>Adc</p>

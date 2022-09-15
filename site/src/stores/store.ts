@@ -14,6 +14,7 @@ interface account {
   LP:number;
   teamLogo?:string;
   team?:string
+  role:string
 }
 
 interface user {
@@ -21,6 +22,7 @@ interface user {
   playerTeam: string;
   teamId: number;
   accounts: [account];
+  role:string
 }
 
 export const useStore = defineStore("main", {

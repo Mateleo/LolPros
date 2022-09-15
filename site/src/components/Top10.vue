@@ -1,27 +1,30 @@
-<script setup lang="ts">import { useStore } from '@/stores/store';
+<script setup lang="ts">
+import { useStore } from "@/stores/store";
 
+const store = useStore();
 
-const store = useStore()
-
-function EmblemImage(tier:string) {
+function EmblemImage(tier: string) {
   return store.ToLowerWithoutFirst(tier)
-    ? "../../emblems/Emblem_" +
-        store.ToLowerWithoutFirst(tier) +
-        ".png"
+    ? "../../emblems/Emblem_" + store.ToLowerWithoutFirst(tier) + ".png"
     : "../../emblems/Emblem_Iron.png";
 }
 
-function mockup(img:any){
-  if(!img){
-    return "../../logo.png"
+function PositionImage(role: string) {
+  return store.ToLowerWithoutFirst(role)
+    ? "../../positions/" + store.ToLowerWithoutFirst(role) + ".svg"
+    : "../../positions/adc.svg";
+}
+
+function mockup(img: any) {
+  if (!img) {
+    return "../../logo.png";
   }
-  return img
+  return img;
 }
 
-function route(account:string){
-  return "/player/"+account
+function route(account: string) {
+  return "/player/" + account;
 }
-
 </script>
 
 <template>
@@ -36,17 +39,33 @@ function route(account:string){
         class="border-b-2 border-gray-900 flex flex-nowrap justify-between px-3 my-2"
       >
         <div class="flex items-center py-4">
-          <img class="w-[40px] mr-5 hidden sm:block" src="https://flagcdn.com/fr.svg" alt="" />
-          <router-link :to="route(user.name)" class="font-bold hover:text-cyan-400 transition-colors ease-in-out w-[120px]">{{user.name}}</router-link>
+          <img
+            class="w-[40px] mr-5 hidden sm:block"
+            src="https://flagcdn.com/fr.svg"
+            alt=""
+          />
+          <router-link
+            :to="route(user.name)"
+            class="font-bold hover:text-cyan-400 transition-colors ease-in-out w-[120px]"
+            >{{ user.name }}</router-link
+          >
         </div>
         <div class="flex sm:justify-between justify-end max-w-[300px] grow items-center">
-          <img class="w-[32px] h-[32px] hidden sm:block" src="../assets/positions/adc.svg" alt="" />
+          <img
+            class="w-[32px] h-[32px] hidden sm:block"
+            :src="PositionImage(user.role)"
+            alt=""
+          />
           <div class="flex flex-col justify-center">
-            <img class="object-cover w-[90px] h-[50px] m-auto" :src="EmblemImage(user.tier)" alt="" />
-            <p class="text-md font-semibold text-center leading-none">{{user.LP}}</p>
+            <img
+              class="object-cover w-[90px] h-[50px] m-auto"
+              :src="EmblemImage(user.tier)"
+              alt=""
+            />
+            <p class="text-md font-semibold text-center leading-none">{{ user.LP }}</p>
           </div>
           <div>
-            <img :src="mockup(user.teamLogo)" alt="" class="h-[32px] hidden sm:block">
+            <img :src="mockup(user.teamLogo)" alt="" class="h-[32px] hidden sm:block" />
           </div>
         </div>
       </div>
