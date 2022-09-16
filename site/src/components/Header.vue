@@ -2,7 +2,7 @@
 <template>
   <header class="flex bg-[#292E35] shadow-lg items-center sticky top-0 h">
     <router-link class="border-r-[1px] border-gray-600 p-4" to="/">
-      <h1 class="hidden lg:block text-3xl">4ESLOLPROS.GG</h1>
+      <h1 class="hidden lg:block text-3xl">4ESLOLPROS.4ES</h1>
       <img src="../assets/logo-white.3301580.svg" alt="" class="block lg:hidden rounded-full w-[36px]">
     </router-link>
     <div class="grow flex">

@@ -25,10 +25,18 @@ interface user {
   role:string
 }
 
+interface team{
+  id:string,
+  name:string,
+  teamLogo:string,
+  players: [account]
+}
+
 export const useStore = defineStore("main", {
   state: () => ({
     User: {} as user,
-    Leaderboard: [] as account[]
+    Leaderboard: [] as account[],
+    Team: {} as team
   }),
   getters: {
     getUserName(state) {
@@ -48,6 +56,16 @@ export const useStore = defineStore("main", {
         .then((res) => {
           this.User = res.data;
           console.log(this.User)
+        })
+        .catch((err) => console.log(err));
+        console.log("User fetched !")
+    },
+    async fetchTeam(team: string) {
+      await axios
+        .get("https://api.4esport.fr/lolpros/team/" + team)
+        .then((res) => {
+          this.Team = res.data;
+          console.log(this.Team)
         })
         .catch((err) => console.log(err));
         console.log("User fetched !")

@@ -12,6 +12,7 @@ body{
   width: 100%;
   margin:0;
   color:white;
+  font-family: heebo;
 }
 :root {
     color-scheme: dark;

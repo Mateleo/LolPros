@@ -25,6 +25,17 @@ function mockup(img: any) {
 function route(account: string) {
   return "/player/" + account;
 }
+function routeTeam(account: string) {
+  return "/team/" + account;
+}
+
+function lpDisplayWithRank(lp:number,rank:string,tier:string){
+  if(tier!="MASTER"){
+    return rank+" - "+lp
+  }
+  return lp
+}
+
 </script>
 
 <template>
@@ -41,13 +52,13 @@ function route(account: string) {
       >
         <div class="flex items-center py-4">
           <img
-            class="w-[40px] mr-5 hidden sm:block"
-            src="https://flagcdn.com/fr.svg"
+            class="w-[50px] mr-5 hidden sm:block rounded-lg"
+            :src="user.logo"
             alt=""
           />
           <router-link
             :to="route(user.name)"
-            class="font-bold hover:text-cyan-400 transition-colors ease-in-out w-[120px]"
+            class="font-semibold text-lg hover:text-cyan-400 transition-colors ease-in-out w-[120px]"
             >{{ user.name }}</router-link
           >
         </div>
@@ -63,11 +74,11 @@ function route(account: string) {
               :src="EmblemImage(user.tier)"
               alt=""
             />
-            <p class="text-md font-semibold text-center leading-none">{{ user.LP }}</p>
+            <p class="text-md font-semibold text-center leading-none">{{lpDisplayWithRank(user.LP, user.rank, user.tier)}}</p>
           </div>
-          <div>
-            <img :src="mockup(user.teamLogo)" alt="" class="h-[32px] hidden sm:block" />
-          </div>
+          <router-link :to="routeTeam(user.team)">
+            <img :src="mockup(user.teamLogo)" alt="" class="h-[32px] hidden sm:block rounded-md" />
+          </router-link>
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import { useStore } from "@/stores/store";
 import { createRouter, createWebHistory, type RouteLocationNormalized } from "vue-router";
 import HomeView from "../Views/HomeView.vue";
-import PlayereView from "../Views/PlayerView.vue";
+import PlayerView from "../Views/PlayerView.vue";
+import TeamView from "../Views/TeamView.vue";
 
 const routes = [
   {
@@ -9,7 +10,7 @@ const routes = [
     name: "Home",
     component: HomeView,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-      document.title = "LolPros"
+      document.title = "LolPros.4eS"
       let store = useStore();
       if (store.Leaderboard.length == 0) {
         await store.fetchLeaderboard();
@@ -20,15 +21,31 @@ const routes = [
   {
     path: "/player/:playerid",
     name: "Player",
-    component: PlayereView,
+    component: PlayerView,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
       let store = useStore();
       if (typeof to.params.playerid == "string") {
         await store.fetchProfile(to.params.playerid);
-        document.title = "LolPros - " + to.params.playerid;
+        document.title = "LolPros.4eS - " + to.params.playerid;
       } else {
         await store.fetchProfile(to.params.playerid[0]);
-        document.title = "LolPros - " + to.params.playerid[0];
+        document.title = "LolPros.4eS - " + to.params.playerid[0];
+      }
+      return true;
+    },
+  },
+  {
+    path: "/team/:teamid",
+    name: "Team",
+    component: TeamView,
+    beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+      let store = useStore();
+      if (typeof to.params.teamid == "string") {
+        await store.fetchTeam(to.params.teamid);
+        document.title = "LolPros.4eS - " + to.params.teamid;
+      } else {
+        await store.fetchTeam(to.params.teamid[0]);
+        document.title = "LolPros.4eS - " + to.params.teamid[0];
       }
       return true;
     },
@@ -39,7 +56,6 @@ const router = createRouter({
   routes,
 });
 
-const title = "LolPros";
 
 // router.beforeEach((to, from) => {
 //   if (to.name == "Player") {

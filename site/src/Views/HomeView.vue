@@ -6,7 +6,7 @@ import Top10 from "../components/Top10.vue";
 
 <template>
 <Header></Header>
-<main class="mt-9">
+<main class="mt-9 max-w-[1500px] m-auto">
   <Top10></Top10>
     <div class="h-[2000px]"></div>
 </main>
