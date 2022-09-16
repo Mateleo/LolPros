@@ -146,7 +146,7 @@ function winrate(win:number, losses:number){
                   }}
                   ({{winrate(store.getAllAcounts[accountIndex].wins,store.getAllAcounts[accountIndex].losses)}})
                 </p>
-                <p>25/05</p>
+                <p>{{store.getAllAcounts[accountIndex].LPHisto[0].date}}</p>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ const routes = [
     name: "Home",
     component: HomeView,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-      document.title = "LolPros.4eS"
+      document.title = "LolPros.4eS";
       let store = useStore();
       if (store.Leaderboard.length == 0) {
         await store.fetchLeaderboard();
@@ -32,6 +32,19 @@ const routes = [
         document.title = "LolPros.4eS - " + to.params.playerid[0];
       }
       return true;
+    },
+    meta: {
+      title: "Home Page - Example App",
+      metaTags: [
+        {
+          name: "description",
+          content: "The home page of our example app.",
+        },
+        {
+          property: "og:description",
+          content: "The home page of our example app.",
+        },
+      ],
     },
   },
   {
@@ -55,7 +68,6 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
 
 // router.beforeEach((to, from) => {
 //   if (to.name == "Player") {
