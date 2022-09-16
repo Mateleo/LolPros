@@ -10,7 +10,8 @@ const app = createApp(App)
 const head = createHead()
 
 app.use(createPinia())
-app.use(router)
 app.use(head)
+app.use(router)
+
 
 app.mount('#app')
