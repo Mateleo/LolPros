@@ -34,7 +34,7 @@ function HighestCLP() {
   })[0];
 }
 
-const siteDate = useHead({
+useHead({
   title: "TEST",
   meta: [
     {
