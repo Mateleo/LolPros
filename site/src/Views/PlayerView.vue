@@ -50,7 +50,7 @@ function winrate(win:number, losses:number){
           <h3>{{store.User.role.toLocaleUpperCase()}}</h3>
         </div>
         <div class="p-2 bg-[#292E35] flex mt-2">
-          <img class="w-[24px] h-[24px] mr-3" src="../assets/positions/adc.svg" alt="" />
+          <!-- <img class="w-[24px] h-[24px] mr-3" src="../assets/positions/adc.svg" alt="" /> -->
           <h3>ADC</h3>
         </div>
       </div>
@@ -59,22 +59,22 @@ function winrate(win:number, losses:number){
       >
         <div class="flex justify-between p-2">
           <div class="flex">
-            <img
+            <!-- <img
               class="w-[24px] h-[24px] mr-2"
               src="../../positions/adc.svg"
               alt=""
-            />
+            /> -->
             <p>Adc</p>
           </div>
           <p class="font-bold">1</p>
         </div>
         <div class="flex justify-between mt-4 p-2">
           <div class="flex">
-            <img
+            <!-- <img
               class="w-[24px] h-[24px] mr-2"
               src="../assets/positions/adc.svg"
               alt=""
-            />
+            /> -->
             <p>Adc</p>
           </div>
           <p class="font-bold">1</p>
