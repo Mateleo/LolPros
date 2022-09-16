@@ -53,7 +53,7 @@ function lpDisplayWithRank(lp:number,rank:string,tier:string){
         <div class="flex items-center py-4">
           <img
             class="w-[50px] mr-5 hidden sm:block rounded-lg"
-            :src="user.logo"
+            :src="user.profileIcon"
             alt=""
           />
           <router-link

@@ -50,8 +50,8 @@ function winrate(win:number, losses:number){
           <h3>{{store.User.role.toLocaleUpperCase()}}</h3>
         </div>
         <div class="p-2 bg-[#292E35] flex mt-2">
-          <!-- <img class="w-[24px] h-[24px] mr-3" src="../assets/positions/adc.svg" alt="" /> -->
-          <h3>ADC</h3>
+          <img class="w-[24px] h-[24px] mr-3" :src="PositionImage(store.User.role)" alt="" />
+          <h3>{{store.User.rankByRole}}</h3>
         </div>
       </div>
       <div

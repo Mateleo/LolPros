@@ -15,7 +15,6 @@ interface account {
   teamLogo?:string;
   team?:string
   role:string
-  logo?:string,
 }
 
 interface user {
@@ -24,6 +23,7 @@ interface user {
   teamId: number;
   accounts: [account];
   role:string
+  rankByRole:string
 }
 
 interface team{

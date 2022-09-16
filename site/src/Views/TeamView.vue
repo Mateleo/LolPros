@@ -58,7 +58,7 @@ function lpDisplayWithRank(lp: number, rank: string, tier: string) {
         >
           <div class="flex items-center">
             <img :src="PositionImage(user.role)" alt="" class="md:w-[38px] w-[28px] md:mr-2 mr-4" />
-            <img :src="user.logo" alt="" class="w-[32px] rounded-md mr-4 hidden md:block" />
+            <img :src="user.profileIcon" alt="" class="w-[32px] rounded-md mr-4 hidden md:block" />
             <router-link :to="route(user.name)" class="text-lg font-semibold hover:text-cyan-400 transition-colors ease-in-out">{{ user.name }}</router-link>
           </div>
           <div class="flex items-center w-[160px]">
