@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useStore } from "@/stores/store";
+import { Head } from "@vueuse/head";
 import { ref } from "vue";
 import Header from "../components/Header.vue";
 import Top10 from "../components/Top10.vue";
@@ -35,6 +36,40 @@ function HighestCLP() {
 </script>
 
 <template>
+  <Head>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="LoLPros by 4eSport" />
+    <meta
+      name="description"
+      content="Manguier"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://metatags.io/" />
+    <meta property="og:title" content="LoLPros by 4eSport" />
+    <meta
+      property="og:description"
+      content="Manguier"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/Mateleo/LolPros/master/site/src/assets/LolPros.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://metatags.io/" />
+    <meta property="twitter:title" content="LoLPros by 4eSport" />
+    <meta
+      property="twitter:description"
+      content="Manguier"
+    />
+    <meta
+      property="twitter:image"
+      content="https://raw.githubusercontent.com/Mateleo/LolPros/master/site/src/assets/LolPros.jpg"
+    />
+  </Head>
   <Header></Header>
   <main class="flex md:w-full mt-6 justify-center flex-col md:flex-row w-[95%] m-auto">
     <div class="flex md:flex-col sm:flex-row justify-between flex-col m-auto sm:m-0">

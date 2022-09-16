@@ -24,15 +24,6 @@ const routes = [
     name: "Player",
     component: PlayerView,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
-      useHead({
-        title: "TEST",
-        meta:[
-          {
-            name:"description",
-            content:"Voici le profil de Manguier"
-          }
-        ]
-      })
       let store = useStore();
       if (typeof to.params.playerid == "string") {
         await store.fetchProfile(to.params.playerid);
