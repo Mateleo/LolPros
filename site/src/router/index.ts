@@ -1,4 +1,5 @@
 import { useStore } from "@/stores/store";
+import { useHead } from "@vueuse/head";
 import { createRouter, createWebHistory, type RouteLocationNormalized } from "vue-router";
 import HomeView from "../Views/HomeView.vue";
 import PlayerView from "../Views/PlayerView.vue";
@@ -23,6 +24,15 @@ const routes = [
     name: "Player",
     component: PlayerView,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+      useHead({
+        title: "TEST",
+        meta:[
+          {
+            name:"description",
+            content:"Voici le profil de Manguier"
+          }
+        ]
+      })
       let store = useStore();
       if (typeof to.params.playerid == "string") {
         await store.fetchProfile(to.params.playerid);

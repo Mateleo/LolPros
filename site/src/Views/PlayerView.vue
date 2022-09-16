@@ -22,12 +22,16 @@ function PositionImage(role: string) {
     : "../../positions/adc.svg";
 }
 
-function winrate(win:number, losses:number){
-  let winrate = win/(win+losses)*100
-  return winrate.toFixed(1)+"%"
-  
+function winrate(win: number, losses: number) {
+  let winrate = (win / (win + losses)) * 100;
+  return winrate.toFixed(1) + "%";
 }
 
+function HighestCLP() {
+  store.getAllAcounts[accountIndex.value].LPHisto.sort((a, b) => {
+    return b.LP - a.LP;
+  })[0];
+}
 </script>
 
 <template>
@@ -46,12 +50,20 @@ function winrate(win:number, losses:number){
         <div class="m-auto">social networks</div>
         <div></div>
         <div class="p-2 bg-[#292E35] flex">
-          <img class="w-[24px] h-[24px] mr-3" :src="PositionImage(store.User.role)" alt="" />
-          <h3>{{store.User.role.toLocaleUpperCase()}}</h3>
+          <img
+            class="w-[24px] h-[24px] mr-3"
+            :src="PositionImage(store.User.role)"
+            alt=""
+          />
+          <h3>{{ store.User.role.toLocaleUpperCase() }}</h3>
         </div>
         <div class="p-2 bg-[#292E35] flex mt-2">
-          <img class="w-[24px] h-[24px] mr-3" :src="PositionImage(store.User.role)" alt="" />
-          <h3>{{store.User.rankByRole}}</h3>
+          <img
+            class="w-[24px] h-[24px] mr-3"
+            :src="PositionImage(store.User.role)"
+            alt=""
+          />
+          <h3>{{ store.User.rankByRole }}</h3>
         </div>
       </div>
       <div
@@ -109,7 +121,7 @@ function winrate(win:number, losses:number){
           v-for="(account, index) in store.getAllAcounts"
           class="bg-[#22262B] border-[1px] border-transparent flex px-4 py-2 rounded-sm mr-5 mt-2 hover:bg-black/10 hover:border-white/10"
           @click="accountIndex = index"
-          :class="accountIndex==index ? ['border-white/10'] : ''"
+          :class="accountIndex == index ? ['border-white/10'] : ''"
         >
           <img
             class="w-[24px] h-[24px] m-auto rounded-full mr-2"
@@ -128,7 +140,10 @@ function winrate(win:number, losses:number){
               <h2 class="ml-2">Current Elo</h2>
               <a
                 class="bg-sky-400 px-2 py-1 text-xs"
-                :href="'https://euw.op.gg/summoners/euw/'+store.getAllAcounts[accountIndex].name"
+                :href="
+                  'https://euw.op.gg/summoners/euw/' +
+                  store.getAllAcounts[accountIndex].name
+                "
                 target="_blank"
                 >OP.GG</a
               >
@@ -144,18 +159,33 @@ function winrate(win:number, losses:number){
                   {{ store.getAllAcounts[accountIndex].wins }}/{{
                     store.getAllAcounts[accountIndex].losses
                   }}
-                  ({{winrate(store.getAllAcounts[accountIndex].wins,store.getAllAcounts[accountIndex].losses)}})
+                  ({{
+                    winrate(
+                      store.getAllAcounts[accountIndex].wins,
+                      store.getAllAcounts[accountIndex].losses
+                    )
+                  }})
                 </p>
-                <p>{{store.getAllAcounts[accountIndex].LPHisto[0].date}}</p>
+                <p>
+                  {{
+                    new Date(
+                      store.getAllAcounts[accountIndex].LPHisto[0].date
+                    ).toLocaleDateString()
+                  }}
+                </p>
               </div>
             </div>
           </div>
           <div class="flex flex-col mt-5">
-
+            <div
+              class="flex justify-between border-l-[3px] border-cyan-300 border-transparent"
+            >
+              <h2 class="ml-2">Hightest Elo</h2>
+            </div>
             <div class="bg-[#22262B] flex justify-between px-2 mt-2">
               <img class="object-cover w-[120px] h-[80px]" src="" alt="" />
               <div class="flex flex-col text-right text-xs p-4 leading-3">
-                <p>Challenger</p>
+                <p></p>
                 <p>1864LP</p>
                 <p>642/519 (55%)</p>
                 <p>25/05</p>

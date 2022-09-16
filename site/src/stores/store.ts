@@ -90,5 +90,22 @@ export const useStore = defineStore("main", {
     ToLowerWithoutFirst(s: string | undefined): string {
       return s ? s[0] + s.slice(1).toLocaleLowerCase() : "";
     },
+    CLPtoObject(CLP:number){
+      const dico_rank = {
+        "MASTER":2400,
+        "DIAMOND":2000,
+        "PLAT":1600,
+        "GOLD":1200,
+        "SILVER":800,
+        "BRONZE":400,
+        "IRON":0
+      }
+      const dico_tier = {
+        "I":400,
+        "II":200,
+        "III":100,
+        "IV":0
+      }
+    }
   },
 });
