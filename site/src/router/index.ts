@@ -9,6 +9,7 @@ const routes = [
     name: "Home",
     component: HomeView,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+      document.title = "LolPros"
       let store = useStore();
       if (store.Leaderboard.length == 0) {
         await store.fetchLeaderboard();
@@ -24,8 +25,10 @@ const routes = [
       let store = useStore();
       if (typeof to.params.playerid == "string") {
         await store.fetchProfile(to.params.playerid);
+        document.title = "LolPros - " + to.params.playerid;
       } else {
         await store.fetchProfile(to.params.playerid[0]);
+        document.title = "LolPros - " + to.params.playerid[0];
       }
       return true;
     },
@@ -35,6 +38,8 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+const title = "LolPros";
 
 // router.beforeEach((to, from) => {
 //   if (to.name == "Player") {

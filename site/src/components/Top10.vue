@@ -35,8 +35,9 @@ function route(account: string) {
     </div>
     <div class="bg-[#292E35] p-2 px-5">
       <div
-        v-for="user in store.Leaderboard"
+        v-for="(user,index) in store.Leaderboard"
         class="border-b-2 border-gray-900 flex flex-nowrap justify-between px-3 my-2"
+        :class="index==store.Leaderboard.length-1 ? ['border-b-0'] : ''"
       >
         <div class="flex items-center py-4">
           <img
