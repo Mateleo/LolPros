@@ -33,16 +33,6 @@ function HighestCLP() {
     return b.LP - a.LP;
   })[0];
 }
-
-useHead({
-  title: "TEST",
-  meta: [
-    {
-      name: "description",
-      content: "MANGUIER MANGUIER",
-    },
-  ],
-});
 </script>
 
 <template>
