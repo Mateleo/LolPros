@@ -15,6 +15,7 @@ interface account {
   teamLogo?:string;
   team?:string
   role:string
+  logo?:string,
 }
 
 interface user {

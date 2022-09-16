@@ -25,8 +25,8 @@ function mockup(img: any) {
 function route(account: string) {
   return "/player/" + account;
 }
-function routeTeam(account: string) {
-  return "/team/" + account;
+function routeTeam(account: string | undefined) {
+  return account ? "/team/" + account : ""
 }
 
 function lpDisplayWithRank(lp:number,rank:string,tier:string){
