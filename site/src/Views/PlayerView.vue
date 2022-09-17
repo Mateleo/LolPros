@@ -246,13 +246,13 @@ console.log(store.getAllAcounts[accountIndex.value].LPHisto.map((hist) => hist.L
               datasets: [
                 {
                   label: 'LP Cumulés',
-                  data: store.getAllAcounts[accountIndex].LPHisto.map((hist) => hist.LP),
+                  data: [...store.getAllAcounts[accountIndex].LPHisto.map((hist) => hist.LP)].reverse(),
                   borderColor: '#38bdf8',
                   borderWidth: 3,
                 },
               ],
               labels: store.getAllAcounts[accountIndex].LPHisto.map((hist) =>
-                new Date(hist.date).toLocaleDateString()
+                new Date(hist.date).toLocaleDateString('fr')
               ),
             }"
           ></Line>
