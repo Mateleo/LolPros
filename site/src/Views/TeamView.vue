@@ -38,7 +38,9 @@ function lpDisplayWithRank(lp: number, rank: string, tier: string) {
 <template>
   <Header></Header>
   <main>
-    <div class="flex justify-center mt-10 max-w-[2000px] m-auto w-[95%] flex-col md:flex-row">
+    <div
+      class="flex justify-center mt-10 max-w-[2000px] m-auto w-[95%] flex-col md:flex-row"
+    >
       <div
         class="aspect-square w-[300px] flex flex-col bg-[#22262B] p-6 shadow-lg shadow-black/10 md:mr-5 m-auto"
       >
@@ -49,17 +51,37 @@ function lpDisplayWithRank(lp: number, rank: string, tier: string) {
         />
         <h2 class="text-xl text-center">{{ store.Team.name }}</h2>
         <div class="m-auto">social networks</div>
+        <a
+          class="bg-sky-400 px-2 py-1 text-xs m-auto hover:bg-sky-600 transition-colors ease-in-out"
+          :href="'https://www.op.gg/multisearch/euw?summoners='+store.Team.players.map(player => player.name)"
+          target="_blank"
+          >OP.GG</a
+        >
       </div>
-      <div class="bg-[#292E35] p-2 shadow-lg shadow-black/10 flex flex-col grow max-w-[700px] mt-5 md:mt-0">
+      <div
+        class="bg-[#292E35] p-2 shadow-lg shadow-black/10 flex flex-col grow max-w-[700px] mt-5 md:mt-0"
+      >
         <div
           v-for="(user, index) in store.Team.players"
           class="border-b-2 border-gray-900 flex flex-nowrap justify-between md:px-3 px-2 py-2 items-center"
           :class="index == store.Team.players.length - 1 ? ['border-b-0'] : ''"
         >
           <div class="flex items-center">
-            <img :src="PositionImage(user.role)" alt="" class="md:w-[38px] w-[28px] md:mr-2 mr-4" />
-            <img :src="user.profileIcon" alt="" class="w-[32px] rounded-md mr-4 hidden md:block" />
-            <router-link :to="route(user.name)" class="text-lg font-semibold hover:text-cyan-400 transition-colors ease-in-out">{{ user.name }}</router-link>
+            <img
+              :src="PositionImage(user.role)"
+              alt=""
+              class="md:w-[38px] w-[28px] md:mr-2 mr-4"
+            />
+            <img
+              :src="user.profileIcon"
+              alt=""
+              class="w-[32px] rounded-md mr-4 hidden md:block"
+            />
+            <router-link
+              :to="route(user.name)"
+              class="text-lg font-semibold hover:text-cyan-400 transition-colors ease-in-out"
+              >{{ user.name }}</router-link
+            >
           </div>
           <div class="flex items-center w-[160px]">
             <img :src="EmblemImage(user.tier)" alt="" class="w-[32px] md:w-[38px] mr-2" />
