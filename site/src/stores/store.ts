@@ -24,12 +24,13 @@ interface account {
 }
 
 interface user {
-  playerName: string;
-  playerTeam: string;
+  name:string
+  team:string
   teamId: number;
   accounts: [account];
   role: string;
   rankByRole: string;
+  id:string
 }
 
 interface team {
@@ -47,10 +48,10 @@ export const useStore = defineStore("main", {
   }),
   getters: {
     getUserName(state) {
-      return state.User.playerName;
+      return state.User.name;
     },
     getUserTeam(state) {
-      return state.User.playerTeam;
+      return state.User.team;
     },
     getAllAcounts(state) {
       return state.User.accounts;
