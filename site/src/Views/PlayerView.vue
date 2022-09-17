@@ -9,11 +9,15 @@ const store = useStore();
 
 let accountIndex = ref(0);
 
-function EmblemImage() {
-  return store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex.value].tier)
-    ? "../../emblems/Emblem_" +
-        store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex.value].tier) +
-        ".png"
+function EmblemImage(mode?: string) {
+  let oninput = "";
+  if (mode) {
+    oninput = mode;
+  } else {
+    oninput = store.getAllAcounts[accountIndex.value].tier;
+  }
+  return store.ToLowerWithoutFirst(oninput)
+    ? "../../emblems/Emblem_" + store.ToLowerWithoutFirst(oninput) + ".png"
     : "../../emblems/Emblem_Iron.png";
 }
 
@@ -29,10 +33,12 @@ function winrate(win: number, losses: number) {
 }
 
 function HighestCLP() {
-  store.getAllAcounts[accountIndex.value].LPHisto.sort((a, b) => {
+  return [...store.getAllAcounts[accountIndex.value].LPHisto].sort((a, b) => {
     return b.LP - a.LP;
   })[0];
 }
+
+console.log(HighestCLP());
 </script>
 
 <template>
@@ -154,6 +160,7 @@ function HighestCLP() {
               <div class="flex flex-col text-right text-xs p-4 leading-3">
                 <p>
                   {{ store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex].tier) }}
+                  {{ store.getAllAcounts[accountIndex].rank }}
                 </p>
                 <p>{{ store.getAllAcounts[accountIndex].LP }}</p>
                 <p>
@@ -181,15 +188,27 @@ function HighestCLP() {
             <div
               class="flex justify-between border-l-[3px] border-cyan-300 border-transparent"
             >
-              <h2 class="ml-2">Hightest Elo</h2>
+              <h2 class="ml-2">Peak Elo</h2>
             </div>
             <div class="bg-[#22262B] flex justify-between px-2 mt-2">
-              <img class="object-cover w-[120px] h-[80px]" src="" alt="" />
+              <img
+                class="object-cover w-[120px] h-[80px]"
+                :src="
+                  EmblemImage(
+                    store.ToLowerWithoutFirst(store.CLPtoObject(HighestCLP().LP).tier)
+                  )
+                "
+                alt=""
+              />
               <div class="flex flex-col text-right text-xs p-4 leading-3">
-                <p></p>
-                <p>1864LP</p>
-                <p>642/519 (55%)</p>
-                <p>25/05</p>
+                <p>
+                  {{
+                    store.ToLowerWithoutFirst(store.CLPtoObject(HighestCLP().LP).tier)
+                  }}
+                  {{ store.CLPtoObject(HighestCLP().LP).rank }}
+                </p>
+                <p>{{ store.CLPtoObject(HighestCLP().LP).LP }}</p>
+                <p>{{ new Date(HighestCLP().date).toLocaleDateString() }}</p>
               </div>
             </div>
           </div>

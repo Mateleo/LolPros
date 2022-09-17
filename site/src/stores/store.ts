@@ -90,22 +90,46 @@ export const useStore = defineStore("main", {
     ToLowerWithoutFirst(s: string | undefined): string {
       return s ? s[0] + s.slice(1).toLocaleLowerCase() : "";
     },
-    CLPtoObject(CLP:number){
-      const dico_rank = {
-        "MASTER":2400,
-        "DIAMOND":2000,
-        "PLAT":1600,
-        "GOLD":1200,
-        "SILVER":800,
-        "BRONZE":400,
-        "IRON":0
+    CLPtoObject(CLP: number) {
+      let test = CLP
+      let rank = "";
+      let tier = "";
+      if (CLP > 2400) {
+        tier = "MASTER";
+        rank="I"
+        return {CLP:test,rank:rank,tier:tier,LP:CLP-2400}
+        CLP -= 2400;
+      } else if (CLP > 2000) {
+        tier = "DIAMOND";
+        CLP -= 2000;
+      } else if (CLP > 1600) {
+        tier = "PLATINUM";
+        CLP -= 1600;
+      } else if (CLP > 1200) {
+        tier = "GOLD";
+        CLP -= 1200;
+      } else if (CLP > 800) {
+        tier = "SILVER";
+        CLP -= 800;
+      } else if (CLP > 400) {
+        tier = "BRONZE";
+        CLP -= 400;
+      } else {
+        tier = "IRON";
       }
-      const dico_tier = {
-        "I":400,
-        "II":200,
-        "III":100,
-        "IV":0
+      if (CLP > 300) {
+        rank = "I";
+        CLP -= 300;
+      } else if (CLP > 200) {
+        rank = "II";
+        CLP -= 200;
+      } else if (CLP > 100) {
+        rank = "III";
+        CLP -= 100;
+      } else {
+        rank = "IV";
       }
-    }
+      return {CLP:test,rank:rank,tier:tier,LP:CLP}
+    },
   },
 });
