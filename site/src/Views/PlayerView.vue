@@ -4,6 +4,29 @@ import { useHead } from "@vueuse/head";
 import { ref } from "vue";
 import Header from "../components/Header.vue";
 import Top10 from "../components/Top10.vue";
+import { Line } from "vue-chartjs";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+} from "chart.js";
+
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement
+);
 
 const store = useStore();
 
@@ -38,7 +61,7 @@ function HighestCLP() {
   })[0];
 }
 
-console.log(HighestCLP());
+console.log(store.getAllAcounts[accountIndex.value].LPHisto.map((hist) => hist.LP));
 </script>
 
 <template>
@@ -202,9 +225,7 @@ console.log(HighestCLP());
               />
               <div class="flex flex-col text-right text-xs p-4 leading-3">
                 <p>
-                  {{
-                    store.ToLowerWithoutFirst(store.CLPtoObject(HighestCLP().LP).tier)
-                  }}
+                  {{ store.ToLowerWithoutFirst(store.CLPtoObject(HighestCLP().LP).tier) }}
                   {{ store.CLPtoObject(HighestCLP().LP).rank }}
                 </p>
                 <p>{{ store.CLPtoObject(HighestCLP().LP).LP }}</p>
@@ -219,7 +240,22 @@ console.log(HighestCLP());
           >
             <h2 class="ml-2">Peak Elo</h2>
           </div>
-          <div class="bg-[#22262B] aspect-square grow mt-2"></div>
+          <Line
+            class="bg-[#22262B] aspect-square grow mt-2"
+            :chart-data="{
+              datasets: [
+                {
+                  label: 'LP Cumulés',
+                  data: store.getAllAcounts[accountIndex].LPHisto.map((hist) => hist.LP),
+                  borderColor: '#38bdf8',
+                  borderWidth: 3,
+                },
+              ],
+              labels: store.getAllAcounts[accountIndex].LPHisto.map((hist) =>
+                new Date(hist.date).toLocaleDateString()
+              ),
+            }"
+          ></Line>
         </div>
       </div>
     </div>
