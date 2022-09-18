@@ -251,9 +251,9 @@ console.log(store.getAllAcounts[accountIndex.value].LPHisto.map((hist) => hist.L
                   borderWidth: 3,
                 },
               ],
-              labels: store.getAllAcounts[accountIndex].LPHisto.map((hist) =>
+              labels: [...store.getAllAcounts[accountIndex].LPHisto.map((hist) =>
                 new Date(hist.date).toLocaleDateString('fr')
-              ),
+              )].reverse(),
             }"
           ></Line>
         </div>
