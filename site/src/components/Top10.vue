@@ -39,7 +39,7 @@ function lpDisplayWithRank(lp:number,rank:string,tier:string){
 </script>
 
 <template>
-  <main class="bg-[#22262B] p-3 md:px-5 px-2 flex flex-col w-[95%] m-auto">
+  <main class="bg-[#22262B] p-3 md:px-5 px-2 flex flex-col w-[95%] m-auto max-w-[900px]">
     <div class="flex justify-between">
       <h2 class="text-cyan-500 text-xl font-bold">Top 10</h2>
       <p class="">Complete ladder</p>

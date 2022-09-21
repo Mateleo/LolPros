@@ -76,7 +76,7 @@ export const useStore = defineStore("main", {
           console.log(this.Team);
         })
         .catch((err) => console.log(err));
-      console.log("User fetched !");
+      console.log("Team fetched !");
     },
     async fetchLeaderboard() {
       await axios
