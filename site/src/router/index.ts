@@ -1,15 +1,11 @@
 import { useStore } from "@/stores/store";
-import { useHead } from "@vueuse/head";
 import { createRouter, createWebHistory, type RouteLocationNormalized } from "vue-router";
-import HomeView from "../Views/HomeView.vue";
-import PlayerView from "../Views/PlayerView.vue";
-import TeamView from "../Views/TeamView.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: HomeView,
+    component: () => import("../Views/HomeView.vue"),
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
       document.title = "LolPros.4eS";
       let store = useStore();
@@ -22,7 +18,7 @@ const routes = [
   {
     path: "/player/:playerid",
     name: "Player",
-    component: PlayerView,
+    component: () => import("../Views/PlayerView.vue"),
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
       let store = useStore();
       if (typeof to.params.playerid == "string") {
@@ -34,24 +30,11 @@ const routes = [
       }
       return true;
     },
-    meta: {
-      title: "Home Page - Example App",
-      metaTags: [
-        {
-          name: "description",
-          content: "The home page of our example app.",
-        },
-        {
-          property: "og:description",
-          content: "The home page of our example app.",
-        },
-      ],
-    },
   },
   {
     path: "/team/:teamid",
     name: "Team",
-    component: TeamView,
+    component: () => import("../Views/TeamView.vue"),
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
       let store = useStore();
       if (typeof to.params.teamid == "string") {
