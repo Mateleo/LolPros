@@ -109,8 +109,38 @@ export const useStore = defineStore("main", {
       return s ? s[0] + s.slice(1).toLocaleLowerCase() : "";
     },
     getPlayerofTheDay() {
-      console.log(this.Leaderboard[new Date().getDate() % this.Leaderboard.length]);
+      // console.log(this.Leaderboard[new Date().getDate() % this.Leaderboard.length]);
       return [this.Leaderboard[new Date().getDate() % this.Leaderboard.length]];
+    },
+    getStreak(L:Array<number>){
+      let Diff = L.slice(1).map(function(n, i) { return n - L[i]; });
+      let DiffSigned = Diff.map(e => {
+        if(e<0){
+          return -1
+        }
+        else{
+          return 1
+        }
+      })
+      let i = 0
+      let current_streak = 0
+      let current_stuff = DiffSigned[0]
+      let streaks = []
+      while(i<DiffSigned.length){
+        if(current_stuff==DiffSigned[i]){
+          current_streak+=1
+        }else{
+          streaks.push(current_streak*(current_stuff))
+          current_stuff = DiffSigned[i]
+          current_streak = 1
+        }
+        i+=1
+      }
+      streaks.push(current_streak*(current_stuff))
+      // console.log(streaks)
+      return streaks
+
+      
     },
     CLPtoObject(CLP: number) {
       let test = CLP;

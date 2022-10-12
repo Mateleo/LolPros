@@ -36,7 +36,7 @@ function lpDisplayWithRank(lp:number,rank:string,tier:string){
 const store = useStore();
 </script>
 <template>
-  <div class="bg-[#22262B] p-3 md:px-5 px-2 flex flex-col w-[95%] m-auto max-w-[900px] mb-10">
+  <div class="bg-[#22262B] p-3 md:px-5 px-2 flex flex-col max-w-[1200px] mb-5">
     <div class="flex justify-between">
       <h2 class="text-cyan-500 text-xl font-bold">Player of the Day</h2>
       <!-- <p class="">Complete ladder</p> -->

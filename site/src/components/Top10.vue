@@ -26,29 +26,28 @@ function route(account: string) {
   return "/player/" + account;
 }
 function routeTeam(account: string | undefined) {
-  return account ? "/team/" + account : ""
+  return account ? "/team/" + account : "";
 }
 
-function lpDisplayWithRank(lp:number,rank:string,tier:string){
-  if(tier!="MASTER"){
-    return rank+" - "+lp
+function lpDisplayWithRank(lp: number, rank: string, tier: string) {
+  if (tier != "MASTER") {
+    return rank + " - " + lp;
   }
-  return lp
+  return lp;
 }
-
 </script>
 
 <template>
-  <main class="bg-[#22262B] p-3 md:px-5 px-2 flex flex-col w-[95%] m-auto max-w-[900px]">
+  <main class="bg-[#22262B] p-3 md:px-5 px-2 flex flex-col max-w-[1200px]">
     <div class="flex justify-between">
       <h2 class="text-cyan-500 text-xl font-bold">Top 10</h2>
       <!-- <p class="">Complete ladder</p> -->
     </div>
     <div class="bg-[#292E35] p-2 px-5">
       <div
-        v-for="(user,index) in [...store.Leaderboard].slice(0,10)"
+        v-for="(user, index) in store.Leaderboard"
         class="border-b-2 border-gray-900 flex flex-nowrap justify-between px-3 my-2"
-        :class="index==store.Leaderboard.length-1 ? ['border-b-0'] : ''"
+        :class="index == store.Leaderboard.length - 1 ? ['border-b-0'] : ''"
       >
         <div class="flex items-center py-4">
           <img
@@ -59,7 +58,18 @@ function lpDisplayWithRank(lp:number,rank:string,tier:string){
           <router-link
             :to="route(user.name)"
             class="font-semibold text-lg hover:text-cyan-400 transition-colors ease-in-out w-[170px]"
-            >{{ user.name }}</router-link
+            >{{ user.name }}
+            {{
+              Math.abs(
+                store.getStreak([...user.LPHisto].map((e) => e.LP).reverse()).slice(-1)[0]
+              ) > 2
+                ? store
+                    .getStreak([...user.LPHisto].map((e) => e.LP).reverse())
+                    .slice(-1)[0]>0
+                  ? "🔥"
+                  : "😰"
+                : ""
+            }}</router-link
           >
         </div>
         <div class="flex sm:justify-between justify-end max-w-[300px] grow items-center">
@@ -74,10 +84,16 @@ function lpDisplayWithRank(lp:number,rank:string,tier:string){
               :src="EmblemImage(user.tier)"
               alt=""
             />
-            <p class="text-md font-semibold text-center leading-none">{{lpDisplayWithRank(user.LP, user.rank, user.tier)}}</p>
+            <p class="text-md font-semibold text-center leading-none">
+              {{ lpDisplayWithRank(user.LP, user.rank, user.tier) }}
+            </p>
           </div>
           <router-link :to="routeTeam(user.team)">
-            <img :src="mockup(user.teamLogo)" alt="" class="h-[32px] hidden sm:block rounded-md" />
+            <img
+              :src="mockup(user.teamLogo)"
+              alt=""
+              class="h-[32px] hidden sm:block rounded-md"
+            />
           </router-link>
         </div>
       </div>
