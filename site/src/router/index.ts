@@ -11,6 +11,7 @@ const routes = [
       let store = useStore();
       if (store.Leaderboard.length == 0) {
         await store.fetchLeaderboard();
+        store.fetchLastGames()
       }
       return true;
     },

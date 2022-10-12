@@ -24,13 +24,13 @@ interface account {
 }
 
 interface user {
-  name:string
-  team:string
+  name: string;
+  team: string;
   teamId: number;
   accounts: [account];
   role: string;
   rankByRole: string;
-  id:string
+  id: string;
 }
 
 interface team {
@@ -40,10 +40,17 @@ interface team {
   players: [account];
 }
 
+interface lastgames {
+  player: string;
+  date: Date;
+  diff: number;
+}
+
 export const useStore = defineStore("main", {
   state: () => ({
     User: {} as user,
     Leaderboard: [] as account[],
+    LastGames: [] as lastgames[],
     Team: {} as team,
   }),
   getters: {
@@ -64,6 +71,16 @@ export const useStore = defineStore("main", {
         .then((res) => {
           this.User = res.data;
           console.log(this.User);
+        })
+        .catch((err) => console.log(err));
+      console.log("User fetched !");
+    },
+    async fetchLastGames() {
+      await axios
+        .get("https://api.4esport.fr/lolpros/lastupdates")
+        .then((res) => {
+          this.LastGames = res.data.response
+          console.log(this.LastGames);
         })
         .catch((err) => console.log(err));
       console.log("User fetched !");
@@ -91,14 +108,23 @@ export const useStore = defineStore("main", {
     ToLowerWithoutFirst(s: string | undefined): string {
       return s ? s[0] + s.slice(1).toLocaleLowerCase() : "";
     },
+    getPlayerofTheDay() {
+      console.log(this.Leaderboard[new Date().getDate() % this.Leaderboard.length]);
+      return [this.Leaderboard[new Date().getDate() % this.Leaderboard.length]];
+    },
     CLPtoObject(CLP: number) {
-      let test = CLP
+      let test = CLP;
       let rank = "";
       let tier = "";
-      if (CLP > 2400) {
+      if (CLP > 3200) {
+        tier = "CHALLENGER";
+        rank = "I";
+        return { CLP: test, rank: rank, tier: tier, LP: CLP - 2400 };
+        CLP -= 2400;
+      } else if (CLP > 2400) {
         tier = "MASTER";
-        rank="I"
-        return {CLP:test,rank:rank,tier:tier,LP:CLP-2400}
+        rank = "I";
+        return { CLP: test, rank: rank, tier: tier, LP: CLP - 2400 };
         CLP -= 2400;
       } else if (CLP > 2000) {
         tier = "DIAMOND";
@@ -130,7 +156,7 @@ export const useStore = defineStore("main", {
       } else {
         rank = "IV";
       }
-      return {CLP:test,rank:rank,tier:tier,LP:CLP}
+      return { CLP: test, rank: rank, tier: tier, LP: CLP };
     },
   },
 });
