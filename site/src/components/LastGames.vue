@@ -55,7 +55,7 @@ function lpDisplayWithRank(lp: number, rank: string, tier: string) {
         <div>
           <p class="font-semibold text-lg">{{ user.player }}</p>
           <p class="text-white/40 text-sm">
-            ({{ moment(user.date).format("DD/MM à hh:mm") }})
+            ({{ moment(user.date).format("DD/MM à HH:mm") }})
           </p>
         </div>
         <div
