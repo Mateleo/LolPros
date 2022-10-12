@@ -50,7 +50,7 @@ function lpDisplayWithRank(lp: number, rank: string, tier: string) {
       <div
         v-for="(user, index) in store.LastGames"
         class="border-b-2 border-gray-900 flex flex-nowrap justify-between px-3 my-2 items-center pb-2"
-        :class="index == store.Leaderboard.length - 1 ? ['border-b-0'] : ''"
+        :class="index == store.LastGames.length - 1 ? ['border-b-0'] : ''"
       >
         <div>
           <p class="font-semibold text-lg">{{ user.player }}</p>
