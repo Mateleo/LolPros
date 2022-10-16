@@ -40,8 +40,8 @@ function filteredList() {
         class="w-full hidden md:block bg-[#292E35] border-[1px] border-gray-600 p-2 focus:outline-none focus:border-sky-400 focus:border-2 focus:rounded-lg"
       />
       <div class="m-auto flex flex-col w-full" v-if="selected" v-auto-animate>
-        <router-link  v-for="player in filteredList()" :key="player.name" :to="'/player/'+player.name" @mouseenter="selected2=true" @mouseleave="selected2=false">
-          <div class="flex items-center py-4">
+        <router-link  v-for="(player,index) in filteredList()" :key="player.name" :to="'/player/'+player.name" @mouseenter="selected2=true" @mouseleave="selected2=false">
+          <div class="flex items-center py-4" :class="filteredList().length==index+1 ? ['pb-2'] : ''">
             <img
               class="w-[50px] mr-5 hidden sm:block rounded-lg"
               :src="player.profileIcon"
