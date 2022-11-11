@@ -43,7 +43,7 @@ function lpDisplayWithRank(lp: number, rank: string, tier: string) {
       <h2 class="text-cyan-500 text-xl font-bold">Top 10</h2>
       <!-- <p class="">Complete ladder</p> -->
     </div>
-    <div class="bg-[#292E35] p-2 px-5">
+    <div class="bg-[#292E35] p-2 px-0 md:px-5">
       <div
         v-for="(user, index) in store.Leaderboard"
         class="border-b-2 border-gray-900 flex flex-nowrap justify-between px-3 my-2"

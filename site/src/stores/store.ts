@@ -41,9 +41,16 @@ interface team {
 }
 
 interface lastgames {
-  player: string;
+  name: string;
+  account:string;
   date: Date;
   diff: number;
+}
+
+interface playeroftheday{
+  name:string,
+  gains:number,
+  profileIcon:string
 }
 
 export const useStore = defineStore("main", {
@@ -52,6 +59,8 @@ export const useStore = defineStore("main", {
     Leaderboard: [] as account[],
     LastGames: [] as lastgames[],
     Team: {} as team,
+    winner: {} as playeroftheday,
+    inter: {} as playeroftheday,
   }),
   getters: {
     getUserName(state) {
@@ -105,12 +114,28 @@ export const useStore = defineStore("main", {
         .catch((err) => console.log(err));
       console.log("Leaderboard fetched !");
     },
+    async fetchWinnerOfTheDay() {
+      await axios
+        .get("https://api.4esport.fr/lolpros/potd")
+        .then((res) => {
+          this.winner = res.data;
+          console.log(this.winner);
+        })
+        .catch((err) => console.log(err));
+      console.log("winner fetched !");
+    },
+    async fetchInterOfTheDay() {
+      await axios
+        .get("https://api.4esport.fr/lolpros/iotd")
+        .then((res) => {
+          this.inter = res.data;
+          console.log(this.inter);
+        })
+        .catch((err) => console.log(err));
+      console.log("inter fetched !");
+    },
     ToLowerWithoutFirst(s: string | undefined): string {
       return s ? s[0] + s.slice(1).toLocaleLowerCase() : "";
-    },
-    getPlayerofTheDay() {
-      // console.log(this.Leaderboard[new Date().getDate() % this.Leaderboard.length]);
-      return [this.Leaderboard[new Date().getDate() % this.Leaderboard.length]];
     },
     getStreak(L:Array<number>){
       let Diff = L.slice(1).map(function(n, i) { return n - L[i]; });

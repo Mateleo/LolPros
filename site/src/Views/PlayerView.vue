@@ -74,8 +74,6 @@ function fetchTeam() {
   }
 }
 fetchTeam();
-
-
 </script>
 
 <template>
@@ -238,7 +236,10 @@ fetchTeam();
             <div class="mt-2 shrink relative">
               <Line
                 class="bg-[#22262B]"
-                :chart-options="{maintainAspectRatio:false,responsive:true}"
+                :chart-options="{
+                  maintainAspectRatio: false,
+                  responsive: true,
+                }"
                 :chart-data="{
                   datasets: [
                     {

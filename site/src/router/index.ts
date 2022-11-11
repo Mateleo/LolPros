@@ -12,6 +12,8 @@ const routes = [
       if (store.Leaderboard.length == 0) {
         await store.fetchLeaderboard();
         store.fetchLastGames()
+        store.fetchInterOfTheDay()
+        store.fetchWinnerOfTheDay()
       }
       return true;
     },
