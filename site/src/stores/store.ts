@@ -20,6 +20,8 @@ interface account {
   teamLogo?: string;
   team?: string;
   role: string;
+  agvWins:number,
+  avgLosses:number
   LPHisto: [histo];
 }
 

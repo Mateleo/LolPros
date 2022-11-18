@@ -93,8 +93,18 @@ fetchTeam();
           alt=""
         />
         <h2 class="text-xl text-center">{{ store.getUserName }}</h2>
-        <div class="m-auto">social networks</div>
-        <div></div>
+        <div class="flex justify-center mb-4">
+          <div
+            class="rounded-full rounded-r-none py-1 w-[50px] text-center font-semibold text-sm bg-green-500 shadow-green-900"
+          >
+            +{{ store.getAllAcounts[accountIndex].agvWins }}
+          </div>
+          <div
+            class="rounded-full rounded-l-none py-1 w-[50px] text-center font-semibold text-sm bg-red-500 shadow-red-900"
+          >
+            {{ store.getAllAcounts[accountIndex].avgLosses }}
+          </div>
+        </div>
         <div class="p-2 bg-[#292E35] flex">
           <img
             class="w-[24px] h-[24px] mr-3"
@@ -154,7 +164,7 @@ fetchTeam();
               >
                 <h2 class="ml-2">Current Elo</h2>
                 <a
-                  class="bg-sky-400 px-2 py-1 text-xs"
+                  class="bg-sky-400 px-2 py-1 text-sm"
                   :href="
                     'https://euw.op.gg/summoners/euw/' +
                     store.getAllAcounts[accountIndex].name
@@ -169,7 +179,7 @@ fetchTeam();
                   :src="EmblemImage()"
                   alt=""
                 />
-                <div class="flex flex-col text-right text-xs p-4 leading-3">
+                <div class="flex flex-col text-right text-sm p-4 leading-3">
                   <p>
                     {{
                       store.ToLowerWithoutFirst(store.getAllAcounts[accountIndex].tier)
@@ -214,7 +224,7 @@ fetchTeam();
                   "
                   alt=""
                 />
-                <div class="flex flex-col text-right text-xs p-4 leading-3">
+                <div class="flex flex-col text-right text-sm p-4 leading-3">
                   <p>
                     {{
                       store.ToLowerWithoutFirst(store.CLPtoObject(HighestCLP().LP).tier)
