@@ -20,8 +20,8 @@ interface account {
   teamLogo?: string;
   team?: string;
   role: string;
-  agvWins:number,
-  avgLosses:number
+  agvWins: number;
+  avgLosses: number;
   LPHisto: [histo];
 }
 
@@ -44,15 +44,15 @@ interface team {
 
 interface lastgames {
   name: string;
-  account:string;
+  account: string;
   date: Date;
   diff: number;
 }
 
-interface playeroftheday{
-  name:string,
-  gains:number,
-  profileIcon:string
+interface playeroftheday {
+  name: string;
+  gains: number;
+  profileIcon: string;
 }
 
 export const useStore = defineStore("main", {
@@ -90,7 +90,7 @@ export const useStore = defineStore("main", {
       await axios
         .get("https://api.4esport.fr/lolpros/lastupdates")
         .then((res) => {
-          this.LastGames = res.data.response
+          this.LastGames = res.data.response;
           console.log(this.LastGames);
         })
         .catch((err) => console.log(err));
@@ -139,35 +139,34 @@ export const useStore = defineStore("main", {
     ToLowerWithoutFirst(s: string | undefined): string {
       return s ? s[0] + s.slice(1).toLocaleLowerCase() : "";
     },
-    getStreak(L:Array<number>){
-      let Diff = L.slice(1).map(function(n, i) { return n - L[i]; });
-      let DiffSigned = Diff.map(e => {
-        if(e<0){
-          return -1
+    getStreak(L: Array<number>) {
+      let Diff = L.slice(1).map(function (n, i) {
+        return n - L[i];
+      });
+      let DiffSigned = Diff.map((e) => {
+        if (e < 0) {
+          return -1;
+        } else {
+          return 1;
         }
-        else{
-          return 1
+      });
+      let i = 0;
+      let current_streak = 0;
+      let current_stuff = DiffSigned[0];
+      let streaks = [];
+      while (i < DiffSigned.length) {
+        if (current_stuff == DiffSigned[i]) {
+          current_streak += 1;
+        } else {
+          streaks.push(current_streak * current_stuff);
+          current_stuff = DiffSigned[i];
+          current_streak = 1;
         }
-      })
-      let i = 0
-      let current_streak = 0
-      let current_stuff = DiffSigned[0]
-      let streaks = []
-      while(i<DiffSigned.length){
-        if(current_stuff==DiffSigned[i]){
-          current_streak+=1
-        }else{
-          streaks.push(current_streak*(current_stuff))
-          current_stuff = DiffSigned[i]
-          current_streak = 1
-        }
-        i+=1
+        i += 1;
       }
-      streaks.push(current_streak*(current_stuff))
+      streaks.push(current_streak * current_stuff);
       // console.log(streaks)
-      return streaks
-
-      
+      return streaks;
     },
     CLPtoObject(CLP: number) {
       let test = CLP;
