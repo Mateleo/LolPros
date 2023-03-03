@@ -1,7 +1,7 @@
 import { useStore } from "@/stores/store";
 import { createRouter, createWebHistory, type RouteLocationNormalized } from "vue-router";
 
-//test
+//test1
 
 const routes = [
   {
